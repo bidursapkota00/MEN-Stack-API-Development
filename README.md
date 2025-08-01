@@ -26,6 +26,10 @@ JWT_SECRET=your-super-secret-jwt-key-here
 JWT_EXPIRES_IN=604800
 ```
 
+---
+
+---
+
 # MERN Stack CRUD Task App - Complete Guide
 
 ## Table of Contents
@@ -49,6 +53,7 @@ JWT_EXPIRES_IN=604800
 17. [Adding Delete Task Feature](#adding-delete-task-feature)
 18. [Adding Get Task By Id](#adding-get-task-by-id)
 19. [Adding Filter and Pagination in get all Tasks](#adding-filter-and-pagination-in-get-all-tasks)
+20. [For Lab Exam](#for-lab-exam)
 
 ## Project Overview
 
@@ -97,6 +102,10 @@ task-app/
 
 ```
 
+---
+
+---
+
 ## Project Setup
 
 ### Initialize the Project
@@ -124,8 +133,32 @@ npx tsc --init
     "target": "ES2020",
     "outDir": "./dist",
     "rootDir": "./src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs"
+    // "verbatimModuleSyntax": true, <--------- Comment this if present
+    // "types": [],  <--------- Comment this if present
     // ... rest of default options
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "src/tests/**/*"]
+}
+```
+
+#### Or Directly copy paste this in (`tsconfig.json`)
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "src/tests/**/*"]
@@ -179,6 +212,10 @@ export default app;
   NODE_ENV=development
   PORT=8080
 ```
+
+---
+
+---
 
 ## Add Database
 
@@ -238,6 +275,10 @@ const startServer = async () => {
 startServer();
 ```
 
+---
+
+---
+
 ## Create Task Collection Schema
 
 ### Task Model (`src/models/Task.ts`)
@@ -294,6 +335,10 @@ const TaskSchema = new Schema<ITask>(
 
 export const Task = mongoose.model<ITask>("Task", TaskSchema);
 ```
+
+---
+
+---
 
 ## Create Task Controller and Routes
 
@@ -374,6 +419,10 @@ import taskRoutes from "./routes/taskRoutes";
 app.use("/api/tasks", taskRoutes);
 ```
 
+---
+
+---
+
 ## Add error handler and 404 handler
 
 ### Update app.ts : Error handler and not found handler (`src/app.ts`)
@@ -407,6 +456,10 @@ app.use((req, res) => {
   });
 });
 ```
+
+---
+
+---
 
 ## Testing with Jest
 
@@ -563,6 +616,10 @@ coverage/
 .env
 ```
 
+---
+
+---
+
 ## Add Data Validation
 
 ### Install dependencies
@@ -637,6 +694,10 @@ import { CreateTaskInput } from "../schemas/taskSchemas";
 // In createTask
 const taskData: CreateTaskInput = req.body;
 ```
+
+---
+
+---
 
 ## Add API Documentation
 
@@ -788,6 +849,10 @@ app.use(
  *         description: Task created successfully
  */
 ```
+
+---
+
+---
 
 ## Add register and login
 
@@ -1109,6 +1174,10 @@ router.post("/register", validateBody(registerSchema), register);
  */
 ```
 
+---
+
+---
+
 ## Add Validation for login and registration
 
 ### Create (`src/schemas/authSchemas.ts`)
@@ -1156,6 +1225,10 @@ const { name, email, password }: RegisterInput = req.body;
 // In login
 const { email, password }: LoginInput = req.body;
 ```
+
+---
+
+---
 
 ## Protect Route
 
@@ -1228,6 +1301,10 @@ import { authenticate } from "../middleware/auth";
 router.post("/", authenticate, validateBody(createTaskSchema), createTask);
 // Add authenticate in route handler
 ```
+
+---
+
+---
 
 ## Add Test for login and register routes
 
@@ -1342,6 +1419,10 @@ describe("Auth API", () => {
 });
 ```
 
+---
+
+---
+
 ## Tests for Route protection and Data Validation
 
 ### Add function to create test user in test setup
@@ -1448,6 +1529,10 @@ describe("Tasks API", () => {
 });
 ```
 
+---
+
+---
+
 ## Add User - Task Relationship
 
 ### Update (`src/models/Task.ts`)
@@ -1527,6 +1612,10 @@ describe("GET /api/tasks", () => {
   });
 });
 ```
+
+---
+
+---
 
 ## Adding Update Task Feature
 
@@ -1786,6 +1875,10 @@ describe("Tasks API", () => {
 });
 ```
 
+---
+
+---
+
 ## Adding Delete Task Feature
 
 ### Update (`src/controllers/taskController.ts`)
@@ -1949,6 +2042,10 @@ describe("Tasks API", () => {
 });
 ```
 
+---
+
+---
+
 ## Adding Get Task By Id
 
 ### Update (`src/controllers/taskController.ts`)
@@ -2065,6 +2162,10 @@ describe("Tasks API", () => {
   });
 });
 ```
+
+---
+
+---
 
 ## Adding Filter and Pagination in get all Tasks
 
@@ -2273,6 +2374,217 @@ describe("Tasks API", () => {
       expect(response.body.success).toBe(false);
       expect(response.body.message).toBe("Invalid query parameters");
     });
+  });
+});
+```
+
+---
+
+---
+
+## For Lab Exam
+
+### Initialize the Project
+
+```bash
+mkdir lab
+cd lab
+```
+
+```bash
+npm init -y
+npm install zod
+```
+
+### Update package.json
+
+```json
+  "scripts": {
+    "dev": "node index.js",
+  },
+  "type": "module",
+```
+
+### WAP that sums two number. Add validation for input.
+
+#### Create file (`index.js`)
+
+```js
+import { z } from "zod";
+
+const addNumbersSchema = z.object({
+  a: z.number().min(1).max(100),
+  b: z.number().min(1).max(100),
+});
+
+function addNumbers(a, b) {
+  const result = addNumbersSchema.safeParse({ a, b });
+
+  if (!result.success) {
+    throw new Error(
+      `Invalid input: ${result.error.issues.map((e) => e.message).join(", ")}`
+    );
+  }
+
+  return result.data.a + result.data.b;
+}
+
+try {
+  console.log(addNumbers(1, 2));
+  // console.log(addNumbers("1", 2));
+  // console.log(addNumbers(150, 2));
+} catch (error) {
+  console.log(error.message);
+}
+```
+
+```bash
+  npm run dev
+```
+
+### WAP that concats firstName, lastName and email. Add validation for input.
+
+- firstName cannot be empty
+- lastName cannot be empty
+- email should be valid
+- Should return in merged sentence like "Email of Bidur Sapkota is bidur@gamil.com"
+
+#### Create file (`index.js`)
+
+```js
+import { z } from "zod";
+// const z = require("zod");
+
+const userInfoSchema = z.object({
+  firstName: z.string().min(1, "First name cannot be empty"),
+  lastName: z.string().min(1, "Last name cannot be empty"),
+  email: z.email("Invalid email format"),
+});
+
+function createUserSentence(firstName, lastName, email) {
+  const result = userInfoSchema.safeParse({ firstName, lastName, email });
+
+  if (!result.success) {
+    throw new Error(
+      `Invalid input: ${result.error.issues.map((e) => e.message).join(", ")}`
+    );
+  }
+
+  return `Email of ${firstName} ${lastName} is ${email}`;
+}
+
+try {
+  console.log(createUserSentence("John", "Doe", "john.doe@example.com"));
+  console.log(createUserSentence("", "Doe", "invalid-email"));
+} catch (error) {
+  console.error(error.message);
+}
+```
+
+```bash
+  npm run dev
+```
+
+### For Testing
+
+```bash
+npm install jest
+```
+
+### Update package.json
+
+```json
+  "scripts": {
+    "test": "jest",
+  },
+  "type": "commonjs",
+```
+
+### WAP that divides two number. Also add proper test cases.
+
+- success should be true for valid numbers with result
+- success should be false for divide by zero with proper message
+
+#### Create file (`index.js`)
+
+```js
+function divideNumbers(a, b) {
+  if (b == 0) return { success: false, message: "Division by zero error" };
+
+  return { success: true, result: a / b };
+}
+
+module.exports = divideNumbers;
+```
+
+#### Create file (`index.test.js`)
+
+```js
+const divideNumbers = require("./index");
+
+describe("divideNumbers", () => {
+  it("should divide two valid numbers correctly", () => {
+    const response = divideNumbers(10, 2);
+    expect(response.success).toBe(true);
+    expect(response.result).toBe(5);
+  });
+  it("should fail for divide by 0", () => {
+    const response = divideNumbers(10, 0);
+    expect(response.success).toBe(false);
+    expect(response.message).toBe("Division by zero error");
+    expect(response.result).toBe(undefined);
+  });
+});
+```
+
+```bash
+  npm run test
+```
+
+### WAP that calculates factorial of given number. Also add proper test cases.
+
+- success should be true for positive numbers with result
+- success should be false for factorial of negative number with proper message
+
+#### Create file (`index.js`)
+
+```js
+function factorial(n) {
+  if (n < 0) {
+    return {
+      success: false,
+      message: "Factorial not defined for negative numbers",
+    };
+  }
+
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+
+  return { success: true, result: result };
+}
+
+module.exports = factorial;
+```
+
+#### Create file (`index.test.js`)
+
+```js
+const factorial = require("./index");
+
+describe("factorial", () => {
+  it("should calculate factorial correctly", () => {
+    const response = factorial(5);
+    expect(response.success).toBe(true);
+    expect(response.result).toBe(120);
+  });
+
+  it("should fail for negative numbers", () => {
+    const response = factorial(-1);
+    expect(response.success).toBe(false);
+    expect(response.message).toBe("Factorial not defined for negative numbers");
+    expect(response.result).toBe(undefined);
   });
 });
 ```
