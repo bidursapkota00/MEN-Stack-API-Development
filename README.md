@@ -756,6 +756,12 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpec, swaggerUiOptions)
 );
+
+// Optional
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
 ```
 
 ### Setup Swagger Schema for Task (`src/routes/taskRoutes.ts`)

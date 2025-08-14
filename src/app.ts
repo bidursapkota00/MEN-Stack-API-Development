@@ -54,6 +54,11 @@ app.use(
   swaggerUi.setup(swaggerSpec, swaggerUiOptions)
 );
 
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
