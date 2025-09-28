@@ -66,7 +66,7 @@ This guide will walk you through creating a full-stack CRUD (Create, Read, Updat
 
 ## Project Structure
 
-```
+```text
 task-app/
 │  src/
 │  ├── controllers/
