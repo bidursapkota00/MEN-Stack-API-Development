@@ -7,6 +7,8 @@
 - Data validation with zod
 - API testing with Jest
 
+![MongoDB, Express and Node Complete Guide by Bidur Sapkota](/2-node-post.jpg "MongoDB, Express and Node Complete Guide - Blog by Bidur Sapkota")
+
 ## How to run
 
 ```bash
