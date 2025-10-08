@@ -16,6 +16,10 @@ npm install
 npm run dev
 ```
 
+## Expected Output
+
+![Expected Output](/output.png)
+
 ## Required environment variables (`.env`)
 
 ```bash
