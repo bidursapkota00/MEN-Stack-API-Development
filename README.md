@@ -30,7 +30,7 @@ JWT_EXPIRES_IN=604800
 
 ---
 
-# MERN Stack CRUD Task App - Complete Guide
+# MEN Stack CRUD Task App API - Complete Guide
 
 ## Table of Contents
 
@@ -54,6 +54,8 @@ JWT_EXPIRES_IN=604800
 18. [Adding Get Task By Id](#adding-get-task-by-id)
 19. [Adding Filter and Pagination in get all Tasks](#adding-filter-and-pagination-in-get-all-tasks)
 20. [For Lab Exam](#for-lab-exam)
+
+---
 
 ## Project Overview
 
@@ -124,28 +126,7 @@ npm install -D nodemon typescript ts-node @types/node @types/express @types/mong
 npx tsc --init
 ```
 
-### Update tsconfig.json
-
-```json
-{
-  "compilerOptions": {
-    // ... all the default options
-    "target": "ES2020",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "module": "commonjs"
-    // "verbatimModuleSyntax": true, <--------- Comment this if present
-    // "types": [],  <--------- Comment this if present
-    // ... rest of default options
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "src/tests/**/*"]
-}
-```
-
-#### Or Directly copy paste this in (`tsconfig.json`)
+### Copy Paste this in (`tsconfig.json`)
 
 ```json
 {
