@@ -1,5 +1,7 @@
 # Complete Backend Course with Express.js
 
+![Bidur Sapkota](https://www.bidursapkota.com.np/_next/image?url=%2Fimages%2Fprofile3.png&w=48&q=75 "Bidur Sapkota - Developer")&nbsp;[Bidur Sapkota](https://www.bidursapkota.com.np/)
+
 ## What it is
 
 - Backend crash course with Mongodb, Node.js, Express.js
@@ -36,7 +38,9 @@ JWT_EXPIRES_IN=604800
 
 ---
 
-# MEN Stack CRUD Task App API - Complete Guide
+---
+
+## MEN Stack CRUD Task App API
 
 ## Table of Contents
 
@@ -114,6 +118,8 @@ task-app/
 
 ---
 
+---
+
 ## Project Setup
 
 ### Initialize the Project
@@ -163,7 +169,9 @@ npx tsc --init
   }
 ```
 
-## Backend Development
+---
+
+### Backend Development:
 
 ### Server Configuration (`src/app.ts`)
 
@@ -199,6 +207,8 @@ export default app;
   NODE_ENV=development
   PORT=8080
 ```
+
+---
 
 ---
 
@@ -266,6 +276,8 @@ startServer();
 
 ---
 
+---
+
 ## Create Task Collection Schema
 
 ### Task Model (`src/models/Task.ts`)
@@ -322,6 +334,8 @@ const TaskSchema = new Schema<ITask>(
 
 export const Task = mongoose.model<ITask>("Task", TaskSchema);
 ```
+
+---
 
 ---
 
@@ -410,6 +424,8 @@ app.use("/api/tasks", taskRoutes);
 
 ---
 
+---
+
 ## Add error handler and 404 handler
 
 ### Update app.ts : Error handler and not found handler (`src/app.ts`)
@@ -443,6 +459,8 @@ app.use((req, res) => {
   });
 });
 ```
+
+---
 
 ---
 
@@ -607,6 +625,8 @@ coverage/
 
 ---
 
+---
+
 ## Add Data Validation
 
 ### Install dependencies
@@ -681,6 +701,8 @@ import { CreateTaskInput } from "../schemas/taskSchemas";
 // In createTask
 const taskData: CreateTaskInput = req.body;
 ```
+
+---
 
 ---
 
@@ -842,6 +864,8 @@ app.get("/api-docs.json", (req, res) => {
  *         description: Task created successfully
  */
 ```
+
+---
 
 ---
 
@@ -1171,6 +1195,8 @@ router.post("/register", validateBody(registerSchema), register);
 
 ---
 
+---
+
 ## Add Validation for login and registration
 
 ### Create (`src/schemas/authSchemas.ts`)
@@ -1218,6 +1244,8 @@ const { name, email, password }: RegisterInput = req.body;
 // In login
 const { email, password }: LoginInput = req.body;
 ```
+
+---
 
 ---
 
@@ -1294,6 +1322,8 @@ import { authenticate } from "../middleware/auth";
 router.post("/", authenticate, validateBody(createTaskSchema), createTask);
 // Add authenticate in route handler
 ```
+
+---
 
 ---
 
@@ -1416,6 +1446,8 @@ describe("Auth API", () => {
 
 ---
 
+---
+
 ## Tests for Route protection and Data Validation
 
 ### Add function to create test user in test setup
@@ -1526,6 +1558,8 @@ describe("Tasks API", () => {
 
 ---
 
+---
+
 ## Add User - Task Relationship
 
 ### Update (`src/models/Task.ts`)
@@ -1605,6 +1639,8 @@ describe("GET /api/tasks", () => {
   });
 });
 ```
+
+---
 
 ---
 
@@ -1872,6 +1908,8 @@ describe("Tasks API", () => {
 
 ---
 
+---
+
 ## Adding Delete Task Feature
 
 ### Update (`src/controllers/taskController.ts`)
@@ -2039,6 +2077,8 @@ describe("Tasks API", () => {
 
 ---
 
+---
+
 ## Adding Get Task By Id
 
 ### Update (`src/controllers/taskController.ts`)
@@ -2155,6 +2195,8 @@ describe("Tasks API", () => {
   });
 });
 ```
+
+---
 
 ---
 
@@ -2370,6 +2412,8 @@ describe("Tasks API", () => {
   });
 });
 ```
+
+---
 
 ---
 
