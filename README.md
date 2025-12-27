@@ -1,6 +1,6 @@
 # Complete Backend Course with Express.js
 
-![Bidur Sapkota](https://www.bidursapkota.com.np/_next/image?url=%2Fimages%2Fprofile3.png&w=48&q=75 "Bidur Sapkota - Developer")&nbsp;[Bidur Sapkota](https://www.bidursapkota.com.np/)
+![Bidur Sapkota](https://www.bidursapkota.com.np/images/gravatar.webp "Bidur Sapkota - Developer")&nbsp;[Bidur Sapkota](https://www.bidursapkota.com.np/)
 
 ## What it is
 
@@ -9,7 +9,7 @@
 - Data validation with zod
 - API testing with Jest
 
-![MongoDB, Express and Node Complete Guide by Bidur Sapkota](/2-node-post.jpg "MongoDB, Express and Node Complete Guide - Blog by Bidur Sapkota")
+![MongoDB, Express and Node Complete Guide by Bidur Sapkota](/2-node-post.webp "MongoDB, Express and Node Complete Guide - Blog by Bidur Sapkota")
 
 ## How to run
 
