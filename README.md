@@ -22,7 +22,7 @@ npm run dev
 
 ## Expected Output
 
-![Expected Output](/output.png)
+![Expected Output](/output.webp)
 
 ## Required environment variables (`.env`)
 
